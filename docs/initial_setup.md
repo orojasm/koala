@@ -40,3 +40,42 @@ Definir la rama feature/initial_setup
 ❯ git branch feature/initial_setup
 ❯ git checkout feature/initial_setup
 ```
+
+## Instalar Tailwind CSS
+Instale tailwind a través de npm y luego ejecute el comando **init*** para generar el archivo tailwind.config.js
+``` bash
+❯ npm install -D tailwindcss postcss autoprefixer
+❯ npx tailwindcss init
+```
+
+Agregue las rutas a todos sus archivos en su archivo tailwind.config.js.
+``` js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{html,ts}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+Añadir las directivas Tailwind al archivo ***./src/styles.css***.
+
+``` css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Ejecute su proceso de compilación de angula con ng serve.
+``` bash
+❯ ng serve
+```
+
+Comienza a usar Tailwind en tu proyecto, modifique el archivo ***app.component.html***, con el siguiente contenido.
+``` html
+<h1 class="text-3xl font-bold underline">Koala</h1>
+
+<router-outlet />
+```
