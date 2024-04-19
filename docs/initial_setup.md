@@ -79,3 +79,42 @@ Comienza a usar Tailwind en tu proyecto, modifique el archivo ***app.component.h
 
 <router-outlet />
 ```
+
+## Configuración de angular
+
+### Generar los archivos de entorno.
+
+``` bash
+❯ ng g environments
+```
+
+### Ignorar archivos de perfiles en git
+
+``` git
+# profiling files
+chrome-profiler-events*.json
+```
+
+### Configurar paths de la aplicación en el archivo ***tsconfig.json***
+
+``` ts
+    "baseUrl": "./",
+    "paths": {
+      "@api/*": [ "src/app/api/*" ],
+      "@app/*": [ "src/app/*" ],
+      "@auth/*": [ "src/app/auth/*" ],
+      "@env/*": [ "src/environments/*" ],
+      "@shared/*": [ "src/app/shared/*" ],
+      "@pages/*": [ "src/app/pages/*" ],
+      "@components/*": [ "src/app/components/*" ],
+    },
+```
+
+### Configurar el puerto de la aplicación en el archivo ***angular.json***
+
+``` ts
+        "serve": {
+          "options": {
+            "port": 4200
+          },
+```
