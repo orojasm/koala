@@ -1,21 +1,48 @@
 <header>
   <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+      <!-- Doc: Brand -->
       <a href="https://flowbite.com" class="flex items-center">
-        <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
+        <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Koala Logo" />
         <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-          Flowbite
+          Koala
         </span>
       </a>
+      <!-- Doc: Buttons -->
       <div class="flex items-center lg:order-2">
+        <!-- Doc: BTN Dark Mode -->
+        <button (click)="toggleDark()" type="button" data-dropdown-toggle="notification-dropdown" 
+          class="p-2 mr-1 rounded-lg 
+            text-gray-500 dark:text-gray-400 
+            hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 
+            focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+          <span class="sr-only">Dark Mode</span>
+          @if (isDark()) {
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+              height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"
+                d="M12 5V3m0 18v-2M7.05 7.05 5.636 5.636m12.728 12.728L16.95 16.95M5 12H3m18 0h-2M7.05 16.95l-1.414 1.414M18.364 5.636 16.95 7.05M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" />
+            </svg>
+          } @else {
+            <svg class="w-5 h-5 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+              height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd"
+                d="M11.675 2.015a.998.998 0 0 0-.403.011C6.09 2.4 2 6.722 2 12c0 5.523 4.477 10 10 10 4.356 0 8.058-2.784 9.43-6.667a1 1 0 0 0-1.02-1.33c-.08.006-.105.005-.127.005h-.001l-.028-.002A5.227 5.227 0 0 0 20 14a8 8 0 0 1-8-8c0-.952.121-1.752.404-2.558a.996.996 0 0 0 .096-.428V3a1 1 0 0 0-.825-.985Z"
+                clip-rule="evenodd" />
+            </svg>
+          }
+        </button>
+        <!-- Doc: BTN Log in -->
         <a href="#"
           class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
           Log in
         </a>
+        <!-- Doc: BTN Get started  -->
         <a href="#"
           class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
           Get started
         </a>
+        <!-- Doc: BTN Toggle -->
         <button data-collapse-toggle="mobile-menu-2" type="button"
           class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
           aria-controls="mobile-menu-2" aria-expanded="false">
@@ -34,42 +61,36 @@
           </svg>
         </button>
       </div>
+      <!-- Doc: Menu -->
       <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
         <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
           <li>
-            <a href="#"
-              class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
-              aria-current="page">
+            <a href="#" [class]="style.itemActive" aria-current="page">
               Home
             </a>
           </li>
           <li>
-            <a href="#"
-              class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">
+            <a href="#" [class]="style.item">
               Company
             </a>
           </li>
           <li>
-            <a href="#"
-              class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">
+            <a href="#" [class]="style.item">
               Marketplace
             </a>
           </li>
           <li>
-            <a href="#"
-              class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">
+            <a href="#" [class]="style.item">
               Features
             </a>
           </li>
           <li>
-            <a href="#"
-              class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">
+            <a href="#" [class]="style.item">
               Team
             </a>
           </li>
           <li>
-            <a href="#"
-              class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">
+            <a href="#" [class]="style.item">
               Contact
             </a>
           </li>

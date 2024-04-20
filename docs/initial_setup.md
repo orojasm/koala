@@ -216,3 +216,65 @@ module.exports = {
   plugins: [],
 }
 ```
+
+## 6. Implementación del modo oscuro.
+
+Ya habíamos configurado darkMode en tailwind (archivo tailwind.json), utilizando la clase ``dark``
+
+``` js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: 'class',
+  content: ["./src/**/*.{html,ts}"],
+  
+  ...
+
+}
+```
+
+Debemos definir la variable ``isDark: boolean = true;`` en ***app.component.ts*** y pasarla como parámetro al Navbar.
+
+``` html
+<div [ngClass]="{'dark': isDark}" class="h-screen text-black bg-white dark:text-white dark:bg-gray-800" >
+  <app-navbar [(isDark)]="isDark" />
+  <main class="px-4 lg:px-6">
+    <div class="mx-auto max-w-screen-xl">
+      <router-outlet />
+    </div>
+  </main>
+</div>
+```
+
+En el archivo ***navbar.component.ts*** recibimos el parámetro como un signal modal (two binding ) ``isDark = model<boolean>(false);`` y en la plantilla lo usamos para manejar el estado de Dark Mode.
+
+``` html
+  ...
+
+  <!-- Doc: BTN Dark Mode -->
+  <button (click)="toggleDark()" type="button" 
+    data-dropdown-toggle="notification-dropdown" 
+    class="p-2 mr-1 rounded-lg ... ">
+    <span class="sr-only">Dark Mode</span>
+    @if (isDark()) {
+      <svg class="w-6 h-6 text-gray-800 dark:text-white" 
+        aria-hidden="true" 
+        xmlns="http://www.w3.org/2000/svg" 
+        width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" 
+          stroke-linejoin="round" stroke-width="1.6"
+          d="M12 5V3m0 18v-2M7.05 7.05 5.636 5.636m1............" />
+      </svg>
+    } @else {
+      <svg class="w-5 h-5 text-gray-500 dark:text-white" 
+        aria-hidden="true" 
+        xmlns="http://www.w3.org/2000/svg" 
+        width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+        <path fill-rule="evenodd"
+          d="M11.675 2.015a.998.998 0 0 0-.403.011C6............" 
+          clip-rule="evenodd" />
+      </svg>
+    }
+  </button>
+
+  ...
+```

@@ -1,5 +1,10 @@
-<app-navbar/>
+<div [ngClass]="{'dark': isDark}" class="h-screen text-black bg-white dark:text-white dark:bg-gray-800" >
+  <app-navbar [(isDark)]="isDark" />
+  <main class="px-4 lg:px-6">
+    <div class="mx-auto max-w-screen-xl">
+      <router-outlet />
+    </div>
+  </main>
+</div>
 
-<main class="mx-auto max-w-screen-xl">
-  <router-outlet />
-</main>
+
