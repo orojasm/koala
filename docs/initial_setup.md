@@ -1,5 +1,19 @@
 # Configuración inicial del proyecto
 
+## Contenido
+
+1. [Creación del proyecto](#1-crear-el-proyecto)
+2. [Configuración de Git y github](#2-configuración-de-git-y-github)
+3. [Inhalación de tailwind CSS](#3-instalar-tailwind-css)
+4. [Configuración de Angular](#4-configuración-de-angular)
+5. [Componentes Home y Navbar](#5-generar-los-componentes-home-y-navbar)
+6. [Modo Oscuro](#6-implementación-del-modo-oscuro)
+7. [Internacionalización](#7-internacionalización)
+
+Otros documentos:
+
+[Procedimientos y comandos de git](/docs/git.md)
+
 ## 1. Crear el proyecto
 Comience creando un nuevo proyecto Angular 17. Utilizando Angular CLI. durante la instalación seleccione SCSS como formato de hoja de estilo.
 
@@ -8,6 +22,7 @@ Comience creando un nuevo proyecto Angular 17. Utilizando Angular CLI. durante l
 ❯ cd koala
 ```
 
+[Ir al inicio]
 ## 2. Configuración de git y github
 
 En Git
@@ -42,6 +57,7 @@ Definir la rama feature/initial_setup
 ❯ git checkout feature/initial_setup
 ```
 
+[Ir al inicio]
 ## 3. Instalar Tailwind CSS
 Instale tailwind a través de npm y luego ejecute el comando **init*** para generar el archivo tailwind.config.js
 ``` bash
@@ -81,6 +97,7 @@ Comienza a usar Tailwind en tu proyecto, modifique el archivo ***app.component.h
 <router-outlet />
 ```
 
+[Ir al inicio]
 ## 4. Configuración de angular
 
 ### Generar los archivos de entorno.
@@ -120,6 +137,7 @@ chrome-profiler-events*.json
           },
 ```
 
+[Ir al inicio]
 ## 5. Generar los componentes home y navbar
 
 Generar los componentes
@@ -217,6 +235,7 @@ module.exports = {
 }
 ```
 
+[Ir al inicio]
 ## 6. Implementación del modo oscuro.
 
 Ya habíamos configurado darkMode en tailwind (archivo tailwind.json), utilizando la clase ``dark``
@@ -277,6 +296,7 @@ En el archivo ***navbar.component.ts*** recibimos el parámetro como un signal m
   ...
 ```
 
+[Ir al inicio]
 ## 7. Internacionalización
 
 La internacionalización , a veces denominada i18n, es el proceso de diseñar y preparar su proyecto para su uso en diferentes lugares del mundo. La localización es el proceso de crear versiones de su proyecto para diferentes configuraciones regionales. El proceso de localización incluye las siguientes acciones.
@@ -439,3 +459,8 @@ En este template html identificamos los textos Home, Features y About, yo utiliz
   "navbar_btn_login": "Empezar ahora",
 }
 ```
+
+[Ir al inicio]
+
+
+[Ir al inicio]: <#top>
