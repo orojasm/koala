@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "koala-e153d": {
+      "hosting": {
+        "koala": [
+          "koala-co"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "koala-e153d"
+  }
+}

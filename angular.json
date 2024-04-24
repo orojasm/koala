@@ -103,6 +103,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "koala:build:production",
+              "serveTarget": "koala:serve:production"
+            },
+            "development": {
+              "buildTarget": "koala:build:development",
+              "serveTarget": "koala:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
