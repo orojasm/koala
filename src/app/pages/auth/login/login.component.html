@@ -1,0 +1,72 @@
+<section class="bg-gray-50 dark:bg-gray-900">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <a (click)="logout()" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+      <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo">
+      {{ "brand" | translate }}
+    </a>
+    <!-- Doc: CARD -->
+    <div class="form-card">
+      <div class="form-card-body">
+        <!-- Doc: TITLE -->
+        <h1 class="form-card-title">
+          {{ "login_title" | translate }}
+        </h1>
+        <!-- Doc: FORM -->
+        <form class="space-y-4 md:space-y-6" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <!-- Doc: BTN  Google Button -->
+          <button type="button" (click)="loginGoogle()" class="btn-secondary">
+            <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+              viewBox="0 0 18 19">
+              <path fill-rule="evenodd"
+                d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z"
+                clip-rule="evenodd" />
+            </svg>
+            {{ "login_btn_google" | translate }}
+          </button>
+          <!-- <span><ui-btn-secondary [title]="'login_btn_google'" (click)="loginGoogle()" /></span> -->
+          <!-- Doc: DIVIDER -->
+          <div class="w-full flex items-center justify-center">
+            <p class="absolute text-gray-500 dark:text-gray-200 font-light
+              text-lg">o</p>
+          </div>
+          <!-- Doc: INPUT email -->
+          <div>
+            <label for="email" class="label">
+              {{ "login_field_email" | translate }}
+            </label>
+            <input type="email" name="email" id="email" class="field-input" formControlName="email"
+              [ngClass]="{'field-invalid': hasError('email')}" placeholder="name@company.com" required="">
+            <!-- Show Error Message -->
+            <ui-error-message [control]="form.get('email')!" />
+          </div>
+          <!-- Doc: INPUT password -->
+          <div>
+            <label for="password" class="label">
+              {{ "login_field_password" | translate }}
+            </label>
+            <input type="password" name="password" id="password" class="field-input" formControlName="password"
+              [ngClass]="{'field-invalid': hasError('password')}" placeholder="••••••••" required="">
+            <!-- Show Error Message -->
+            <ui-error-message [control]="form.get('password')!" />
+          </div>
+          <!-- Doc: LINK Forgot password -->
+          <div class="flex items-center justify-end">
+            <a routerLink="/auth/forgot-password" class="form-card-link">
+              {{ "login_link_forgot" | translate }}
+            </a>
+          </div>
+          <!-- Doc: BTN  Sign in -->
+          <span><ui-btn-primary [title]="'login_btn'" (click)="onClick($event)" [disabled]=!form.valid /></span>
+          <!-- Doc: LINK Sign up -->
+          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+            {{ "login_text_signUp" | translate }}
+            <a routerLink="/auth/register" class="form-card-link">
+              {{ "login_link_signUp" | translate }}
+            </a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<pre>{{ user$ | async | json }}</pre>
