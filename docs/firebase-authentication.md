@@ -1,5 +1,9 @@
 # Instalación de firebase.
 
+1. [Crear una aplicación en Firebase](#1-crear-una-aplicación-en-firebase)
+2. [Activar productos de Firebase en nuestro proyecto](#2-activar-productos-de-firebase-en-nuestro-proyecto)
+3. [Instala AngularFire](#3-instala-angularfire)
+
 ## 1. Crear una aplicación en Firebase
 
 En la [consola de Firebase](https://console.firebase.google.com/?hl=es) presionamos el botón **+Agregar un Proyecto**, en la primera ventana deshabilitamos las analíticas. <br>
@@ -12,7 +16,8 @@ En la ventana **Agrega Firebase a tu aplicación web** debemos realizar la sigui
 2. Agrega el SDK de Firebase :
     * ``npm install firebase``
     * Ademas nos presenta un archivo js con los parámetros para inicializar Firebase en nuestro proyecto *(este archivo no lo usaremos, en sus lugar usaremos la configuración que nos proporciona Angular Firebase, [ver mas adelante](#3-instala-angularfire) )*.
-``` js
+
+```javascript
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -32,7 +37,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 ```
 
-3. Instala Firebase CLI 
+3. Instala Firebase CLI
+
 ``` bash
 npm install -g firebase-tools
 ```
@@ -42,18 +48,26 @@ npm install -g firebase-tools
   * Inicia el proyecto ``firebase init``
   * Despliega la aplicación web ``firebase deploy``
 
+[Ir al inicio]
+
 ## 2. Activar productos de Firebase en nuestro proyecto
+
 * En la ventana principal del proyecto, en el apartado **Elige un producto para agregarlo a tu app** presionamos en **Authentication**, donde agregamos los proveedores: **correo electrónico/contraseña** y **Google**.
 * Nuevamente, En la ventana principal del proyecto, en el apartado **Elige un producto para agregarlo a tu app** presionamos en **Cloud Firestore**, Creamos la base de datos en Firestore.
+
+[Ir al inicio]
 
 ## 3. Instala AngularFire
 
 El paquete AngularFire se encuentra en git (https://github.com/angular/angularfire), y según su documentación se debe instalar el schematic:
-``` bash
+
+```bash
 ng add @angular/fire
 ```
+
 Durante la instalación nos preguntan las facilidades que vamos a configurar, a lo cual contestamos:
-``` bash
+
+```bash
 What features would you like to setup? 
  ◉ ng deploy -- hosting
  ◉ Authentication
@@ -63,8 +77,10 @@ What features would you like to setup?
  ◯ Realtime Database
  ◯ Cloud Functions (callable)
  ```
+
 Luego nos pregunta: la cuenta de google, el proyecto, el hosting site y la base de datos. En mi caso la salida de la instalación es la siguiente:
-``` bash
+
+```bash
 ng add @angular/fire
 Skipping installation: Package already installed
 UPDATE package.json (1300 bytes)
@@ -85,11 +101,12 @@ UPDATE angular.json (3579 bytes)
 UPDATE firebase.json (110 bytes)
 UPDATE src/app/app.config.ts (1557 bytes)
 ```
+
 Esta instalación nos indica que nuestro site es ***https://koala-co.web.app*** 
 
 Como resultado de este schematics se actualiza el archivo **app.config.ts** y una vez realizado un procesos de formateo, el código, queda asi:
 
-``` ts
+```typescript
 
 ...
 
@@ -114,8 +131,10 @@ export const appConfig: ApplicationConfig = {
   ]
 };
 ```
+
 Los parámetros para inicializar Firebase en nuestro proyecto los movimos al archivo **environment.development.ts**
-``` ts
+
+```typescript
 export const environment = {
   apiUrl: '',
   production: false,
@@ -130,4 +149,7 @@ export const environment = {
 };
 ```
 
-# Auténtica y administrar usuarios con firebase.
+[Ir al inicio]
+
+
+[Ir al inicio]: <#top>
