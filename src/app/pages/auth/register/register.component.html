@@ -1,7 +1,6 @@
 <section class="bg-gray-50 dark:bg-gray-900">
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-    <!-- TODO: Eliminar Logout -->
-    <a (click)="logout()" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+    <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
       <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo">
       {{ "brand" | translate }}
     </a>
@@ -10,7 +9,7 @@
       <div class="form-card-body">
         <!-- Doc: TITLE -->
         <h1 class="form-card-title">
-          {{ "login_title" | translate }}
+          {{ "register_title" | translate }}
         </h1>
         <!-- Doc: FORM -->
         <form class="space-y-4 md:space-y-6" [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -22,7 +21,7 @@
                 d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z"
                 clip-rule="evenodd" />
             </svg>
-            {{ "login_btn_google" | translate }}
+            {{ "register_btn_google" | translate }}
           </button>
           <!-- Doc: DIVIDER -->
           <div class="inline-flex items-center justify-center w-full">
@@ -36,38 +35,57 @@
           <!-- Doc: INPUT email -->
           <div>
             <label for="email" class="label">
-              {{ "login_field_email" | translate }}
+              {{ "register_field_email" | translate }}
             </label>
             <input type="email" name="email" id="email" class="field-input" formControlName="email"
-              [ngClass]="{'field-invalid': hasError('email')}" [placeholder]="'login_placeholder_email' | translate"
+              [ngClass]="{'field-invalid': hasError('email')}"
+              [placeholder]="'register_placeholder_email' | translate"
               required="">
             <ui-error-message [control]="form.get('email')!" />
           </div>
           <!-- Doc: INPUT password -->
           <div>
             <label for="password" class="label">
-              {{ "login_field_password" | translate }}
+              {{ "register_field_password" | translate }}
             </label>
             <input type="password" name="password" id="password" class="field-input" formControlName="password"
-              [ngClass]="{'field-invalid': hasError('password')}" placeholder="••••••••" required="">
+              [ngClass]="{'invalid': hasError('password')}" placeholder="••••••••" required="">
             <ui-error-message [control]="form.get('password')!" />
           </div>
-          <!-- Doc: LINK Forgot password -->
-          <div class="flex items-center justify-end">
-            <a routerLink="/auth/forgot-password" class="form-card-link">
-              {{ "login_link_forgot" | translate }}
-            </a>
+          <!-- Doc: INPUT confirmPassword -->
+          <div>
+            <label for="confirm-password" class="label">
+              {{ "register_field_confirmPassword" | translate }}
+            </label>
+            <input type="confirm-password" name="confirm-password" id="confirm-password" class="field-input" formControlName="confirmPassword" [ngClass]="{'invalid': hasError('confirmPassword')}"
+              placeholder="••••••••" required="">
+            <ui-error-message [control]="form.get('confirmPassword')!" />
           </div>
-          <!-- Doc: BTN Login -->
+          <!-- Doc: TEXT Terms and Conditions -->
+          <div class="flex items-start">
+            <div class="flex items-center h-5">
+              <input id="terms" aria-describedby="terms" type="checkbox"
+                class="field-checkbox"
+                required="">
+            </div>
+            <div class="ml-3 text-sm">
+              <label for="terms"  class="form-card-text">
+                {{ "register_text_termsAndConditions" | translate }}
+              <a href="#" class="form-card-link">
+                  {{ "register_link_termsAndConditions" | translate }}
+                </a>
+              </label>
+            </div>
+          </div>
+          <!-- Doc: BTN Create an account -->
           <button type="submit" class="btn-primary" [disabled]=!form.valid>
-            {{ "login_btn" | translate }}
+            {{ "register_btn" | translate }}
           </button>
-          <!-- <span><ui-btn-primary [title]="'login_btn'" (click)="onClick($event)" [disabled]=!form.valid /></span> -->
-          <!-- Doc: LINK Register -->
-          <p class="text-sm font-light text-gray-500 dark:text-gray-300">
-            {{ "login_text_signUp" | translate }}
-            <a routerLink="/auth/register" class="form-card-link">
-              {{ "login_link_signUp" | translate }}
+          <!-- Doc: LINK Sign in -->
+          <p class="form-card-text">
+            {{ "register_text_login" | translate }}
+            <a routerLink="/auth/sign-in" class="form-card-link">
+              {{ "register_link_login" | translate }}
             </a>
           </p>
         </form>
@@ -75,4 +93,3 @@
     </div>
   </div>
 </section>
-<pre>{{ user$ | async | json }}</pre>

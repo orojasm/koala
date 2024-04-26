@@ -1,5 +1,5 @@
 {
-  "brand": "Koala (en)",
+  "brand": "Koala",
   "language_english": "English",
   "language_spanish": "Spanish",
   "navbar_lnk_home": "Home",
@@ -12,7 +12,7 @@
   "navbar_lnk_getstarted": "Get Started",
   "login_title": "Sign in to your account",
   "login_field_email": "Your email",
-  "login_placeholder_email": "name@company.com",
+  "login_placeholder_email": "username@company.com",
   "login_field_password": "Password",
   "login_link_forgot": "Forgot password?",
   "login_btn": "Sign in",
@@ -21,15 +21,15 @@
   "login_link_signUp": "Sign up",
   "register_title": "Create your Account",
   "register_field_email": "Your email",
-  "register_placeholder_email": "name@company.com",
+  "register_placeholder_email": "username@company.com",
   "register_field_password": "Password",
   "register_field_confirmPassword": "Confirm password",
   "register_text_termsAndConditions": "I accept the",
   "register_link_termsAndConditions": "Terms and Conditions",
   "register_btn": "Create an account",
   "register_btn_google": "Sign in with Google",
-  "register_text_signIn": "Already have an account?",
-  "register_link_signIn": "Login here",
+  "register_text_login": "Already have an account?",
+  "register_link_login": "Login here",
   "zzz": "zzz"
 }
 

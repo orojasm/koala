@@ -1,29 +1,27 @@
-import { AsyncPipe, JsonPipe, NgClass } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { AuthService } from '@core/services/auth.service';
 import { BtnPrimaryComponent } from '@shared/components/btn-primary/btn-primary.component';
 import { ErrorMessageComponent } from '@shared/components/error-message/error-message.component';
+import { NgClass } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [
-    AsyncPipe,
-    BtnPrimaryComponent,
-    ErrorMessageComponent,
-    JsonPipe,
     NgClass,
+    ErrorMessageComponent,
+    BtnPrimaryComponent,
     ReactiveFormsModule,
     RouterLink,
-    TranslateModule,
+    TranslateModule
   ],
-  templateUrl: './login.component.html'
+  templateUrl: './register.component.html'
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   form!: FormGroup;
   private readonly formBuilder = inject(FormBuilder);
   private readonly authSvc = inject(AuthService);
@@ -36,20 +34,17 @@ export class LoginComponent implements OnInit {
     this.user$ = this.authSvc.userState$;
   }
 
-  onClick(res?: any): void {
-    console.log('xRes:', res);
-  }
-
   private initForm(): void {
     this.form = this.formBuilder.group({
       email: ['', [ Validators.required, Validators.pattern(this.emailPattern) ]],
       password: ['', [ Validators.required, Validators.minLength(8) ]],
+      confirmPassword: ['', [ Validators.required, Validators.minLength(8) ]],
     });
   }
 
   onSubmit(): void {
     const { email, password } = this.form.value;
-    this.authSvc.login(email, password)
+    this.authSvc.register(email, password)
   }
 
   hasError(field: string): boolean {
@@ -57,7 +52,7 @@ export class LoginComponent implements OnInit {
     return !!fieldName?.invalid && fieldName.touched;
   }
 
-  loginGoogle(resp?: any): void {
+  loginGoogle(): void {
     this.authSvc.loginGoogle();
   }
 
