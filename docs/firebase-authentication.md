@@ -3,6 +3,7 @@
 1. [Crear una aplicación en Firebase](#1-crear-una-aplicación-en-firebase)
 2. [Activar productos de Firebase en nuestro proyecto](#2-activar-productos-de-firebase-en-nuestro-proyecto)
 3. [Instala AngularFire](#3-instala-angularfire)
+4. [Desplegar la aplicación en firebase](#4-desplegar-la-aplicación-en-firebase)
 
 ## 1. Crear una aplicación en Firebase
 
@@ -151,5 +152,34 @@ export const environment = {
 
 [Ir al inicio]
 
+
+## 4. Desplegar la aplicación en firebase.
+
+Es hora de subir nuestra aplicación a firebase, con el objetivo de verificar que este proceso funciona correctamente.
+
+1. Primero procederemos a genera nuestra aplicación para el despliegue, para lo cual utilizaremos el comando por consola: ``npm run build ``.
+Y luego verificamos el directorio de salida en la carpeta **build**.
+
+2. En segundo lugar, Modificar el archivo firebase.json, en donde cambiamos el campo `"source": "."` por `"public": "dist/koala/browser"`
+
+```json
+{
+  "hosting": [
+    {
+      "target": "koala",
+      "public": "dist/koala/browser",
+      "frameworksBackend": {}
+    }
+  ]
+}
+```
+
+3. y Por ultimo desplegaremos nuestra aplicación en firebase.
+
+```bash
+firebase deploy
+```
+
+[Ir al inicio]
 
 [Ir al inicio]: <#top>
