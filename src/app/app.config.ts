@@ -3,8 +3,8 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
+import { connectFirestoreEmulator, getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from '@env/environment.development';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -33,10 +33,18 @@ export const appConfig: ApplicationConfig = {
       provideFirebaseApp(() => initializeApp(environment.firebase))
     ),
     importProvidersFrom(
-      provideAuth(() => getAuth())
+      provideAuth(() => {
+        const auth = getAuth();
+        connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
+        return auth;
+      })
     ),
     importProvidersFrom(
-      provideFirestore(() => getFirestore())
+      provideFirestore(() => {
+        const firestore = getFirestore();
+        connectFirestoreEmulator(firestore, 'http://localhost', 9098);
+        return firestore;
+      })
     ),
   ]
 };

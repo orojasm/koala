@@ -1,6 +1,7 @@
-import { Component, model } from '@angular/core';
+import { Component, inject, model } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { PreferencesService } from '@shared/services/preferences.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,11 +10,11 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterLink,
     TranslateModule
   ],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  templateUrl: './navbar.component.html'
 })
 export class NavbarComponent {
   isDark = model<boolean>(false);
+  private readonly preferencesSvc = inject(PreferencesService);
 
   style = {
     itemActive: `
@@ -38,6 +39,7 @@ export class NavbarComponent {
 
   toggleDark() {
     this.isDark.update((value) => !value);
+    this.preferencesSvc.isDark = this.isDark();
   }
 
 }

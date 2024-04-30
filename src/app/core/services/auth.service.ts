@@ -62,7 +62,7 @@ export class AuthService {
       );
       // Check if user is already verify and Redirect
       (user.emailVerified)
-        ? await this.router.navigate(['/auth/profile'])
+        ? await this.router.navigate(['/'])
         : await this.router.navigate(['/auth/email-verification']);
     } catch (error) {
       const { code, message } = error as ErrorResponse;
@@ -85,7 +85,7 @@ export class AuthService {
     try {
       await this.auth.signOut();
       console.log('auth.signOut');
-
+      await this.router.navigate([''])
     } catch (error) {
       console.log(error);
     }

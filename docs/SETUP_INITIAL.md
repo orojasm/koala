@@ -436,8 +436,8 @@ En este template html identificamos los textos Home, Features y About, yo utiliz
 
 ```json
 {
-  "language_english": "English",
-  "language_spanish": "Spanish",
+  "core_language_english": "English",
+  "core_language_spanish": "Spanish",
   "navbar_brand": "My Company",
   "navbar_lnk_home": "Home",
   "navbar_lnk_features": "Features",
