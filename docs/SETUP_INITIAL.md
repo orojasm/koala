@@ -1,56 +1,81 @@
 # Configuración inicial del proyecto
 
+## Contenido
+
+1. [Creación del proyecto](#1-crear-el-proyecto)
+2. [Configuración de Git y github](#2-configuración-de-git-y-github)
+3. [Inhalación de tailwindCSS](#3-instalar-tailwind-css)
+4. [Configuración de Angular](#4-configuración-de-angular)
+5. [Componentes Home y Navbar](#5-generar-los-componentes-home-y-navbar)
+6. [Modo Oscuro](#6-implementación-del-modo-oscuro)
+7. [Internacionalización](#7-internacionalización)
+
+Otros documentos:
+
+[Procedimientos y comandos de git](/docs/git.md)
+
 ## 1. Crear el proyecto
 Comience creando un nuevo proyecto Angular 17. Utilizando Angular CLI. durante la instalación seleccione SCSS como formato de hoja de estilo.
 
-``` bash
+```bash
 ❯ ng new koala
 ❯ cd koala
 ```
+
+[Ir al inicio]
 
 ## 2. Configuración de git y github
 
 En Git
 Cambiar el mensaje ***initial commit***, según las reglas de ***Conventional Commits***
-``` bash
+
+```bash
 ❯ git commit --amend -m "chore(config): :tada: initial commit"
 ```
 
 Definir el repositorio 'koala' en github y Conectar git a github
-``` bash
+
+```bash
 ❯ git remote add origin git@github.com:orojasm/koala.git
 ❯ git push -u origin main
 ```
 
 Definir la rama release y sincronizarla con github
-``` bash
+
+```bash
 ❯ git branch release
 ❯ git checkout release
 ❯ git push -u origin release
 ```
 
 Definir la rama develop y sincronizarla con github
-``` bash
+
+```bash
 ❯ git branch develop
 ❯ git checkout develop
 ❯ git push -u origin develop
 ```
 
 Definir la rama feature/initial_setup
-``` bash
+
+```bash
 ❯ git branch feature/initial_setup
 ❯ git checkout feature/initial_setup
 ```
 
-## 3. Instalar Tailwind CSS
+[Ir al inicio]
+
+## 3. Instalar TailwindCSS
 Instale tailwind a través de npm y luego ejecute el comando **init*** para generar el archivo tailwind.config.js
-``` bash
+
+```bash
 ❯ npm install -D tailwindcss postcss autoprefixer
 ❯ npx tailwindcss init
 ```
 
 Agregue las rutas a todos sus archivos en su archivo tailwind.config.js.
-``` js
+
+```javascript
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
@@ -63,75 +88,81 @@ module.exports = {
 
 Añadir las directivas Tailwind al archivo ***./src/styles.css***.
 
-``` css
+```css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
 
 Ejecute su proceso de compilación de angula con ng serve.
-``` bash
+
+```bash
 ❯ ng serve
 ```
 
 Comienza a usar Tailwind en tu proyecto, modifique el archivo ***app.component.html***, con el siguiente contenido.
-``` html
+
+```html
 <h1 class="text-3xl font-bold underline">Koala</h1>
 
 <router-outlet />
 ```
 
+[Ir al inicio]
+
 ## 4. Configuración de angular
 
 ### Generar los archivos de entorno.
 
-``` bash
+```bash
 ❯ ng g environments
 ```
 
 ### Ignorar archivos de perfiles en git
 
-``` git
+```config
 # profiling files
 chrome-profiler-events*.json
 ```
 
 ### Configurar paths de la aplicación en el archivo ***tsconfig.json***
 
-``` ts
+```typescript
     "baseUrl": "./",
     "paths": {
-      "@api/*": [ "src/app/api/*" ],
       "@app/*": [ "src/app/*" ],
-      "@auth/*": [ "src/app/auth/*" ],
-      "@env/*": [ "src/environments/*" ],
-      "@shared/*": [ "src/app/shared/*" ],
+      "@api/*": [ "src/app/api/*" ],
+      "@core/*": [ "src/app/core/*" ],
       "@pages/*": [ "src/app/pages/*" ],
-      "@components/*": [ "src/app/components/*" ],
+      "@shared/*": [ "src/app/shared/*" ],
+      "@auth/*": [ "src/app/pages/auth/*" ],
+      "@env/*": [ "src/environments/*" ],
     },
 ```
 
 ### Configurar el puerto de la aplicación en el archivo ***angular.json***
 
-``` ts
+```typescript
         "serve": {
           "options": {
             "port": 4200
           },
 ```
 
+[Ir al inicio]
+
 ## 5. Generar los componentes home y navbar
 
 Generar los componentes
 
-``` bash
+```bash
 ❯ ng g c pages/home
 ❯ ng g c shared/components/navbar
 ```
 
 Adicionar la ruta ***/home***
 
-``` ts
+```typescript
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -143,7 +174,7 @@ export const routes: Routes = [
 
 Modificar el archivo ***home.component.ts*** para que el ***export*** tenga ***default***.
 
-``` ts
+```typescript
 import { Component } from '@angular/core';
 
 @Component({
@@ -153,14 +184,12 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export default class HomeComponent {
-
-}
+export default class HomeComponent { }
 ```
 
 Para el componente Navbar utilizamos la platilla Header de [Flowbite](https://flowbite.com/blocks/marketing/header/), se debe modificar el archivo tailwind.config.js para configurar darkMode y colors y fontFamily
 
-``` js
+```javascript
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -217,11 +246,13 @@ module.exports = {
 }
 ```
 
+[Ir al inicio]
+
 ## 6. Implementación del modo oscuro.
 
 Ya habíamos configurado darkMode en tailwind (archivo tailwind.json), utilizando la clase ``dark``
 
-``` js
+```javascript
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -234,7 +265,7 @@ module.exports = {
 
 Debemos definir la variable ``isDark: boolean = true;`` en ***app.component.ts*** y pasarla como parámetro al Navbar.
 
-``` html
+```html
 <div [ngClass]="{'dark': isDark}" class="h-screen text-black bg-white dark:text-white dark:bg-gray-800" >
   <app-navbar [(isDark)]="isDark" />
   <main class="px-4 lg:px-6">
@@ -247,7 +278,7 @@ Debemos definir la variable ``isDark: boolean = true;`` en ***app.component.ts**
 
 En el archivo ***navbar.component.ts*** recibimos el parámetro como un signal modal (two binding ) ``isDark = model<boolean>(false);`` y en la plantilla lo usamos para manejar el estado de Dark Mode.
 
-``` html
+```html
   ...
 
   <!-- Doc: BTN Dark Mode -->
@@ -277,6 +308,8 @@ En el archivo ***navbar.component.ts*** recibimos el parámetro como un signal m
   ...
 ```
 
+[Ir al inicio]
+
 ## 7. Internacionalización
 
 La internacionalización , a veces denominada i18n, es el proceso de diseñar y preparar su proyecto para su uso en diferentes lugares del mundo. La localización es el proceso de crear versiones de su proyecto para diferentes configuraciones regionales. El proceso de localización incluye las siguientes acciones.
@@ -295,12 +328,13 @@ Para aprovechar las funciones de localización de Angular, utilice la CLI de Ang
 
 Para agregar el paquete **@angular/localize**, use el siguiente comando para actualizar el archivo package.json y los archivos de configuración de TypeScript en su proyecto.
 
-``` bash
+```bash
 ❯ ng add @angular/localize
 ```
 
 Instalaremos los paquetes de traducción y cargo de los archivos de traducción: 
-``` bash
+
+```bash
 ❯ npm install @ngx-translate/core
 ❯ npm install @ngx-translate/http-loader
 ```
@@ -309,7 +343,7 @@ Instalaremos los paquetes de traducción y cargo de los archivos de traducción:
 
 Adicionar ``TranslateModule.forRoot( translateModuleConfig )`` al archivo ***app.config.ts***
 
-``` ts
+```typescript
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
@@ -346,7 +380,7 @@ Para preparar su proyecto para la traducción, complete las siguientes acciones.
 
 * Adicione el TranslateModule al archivo component.ts
 
-``` ts
+```typescript
 import { Component, model } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -370,7 +404,7 @@ export class NavbarComponent {
 
 * Identifique los textos a traducir
 
-``` html
+```html
   <ul [class]="style.menuOptionsList">
     <li><a routerLink="/home" [class]="style.itemActive">
       Home
@@ -383,9 +417,10 @@ export class NavbarComponent {
     </a></li>
   </ul>
 ```
+
 En este template html identificamos los textos Home, Features y About, yo utilizare el siguiente estándar para las etiquetas de los textos
 
-``` json
+```json
 {
   "component_type_label": "text"
 }
@@ -399,10 +434,10 @@ En este template html identificamos los textos Home, Features y About, yo utiliz
 
 * Adicione en archivo assets/i18n/en.json con las tradiciones en ingles, por ejemplo
 
-``` json
+```json
 {
-  "language_english": "English",
-  "language_spanish": "Spanish",
+  "core_language_english": "English",
+  "core_language_spanish": "Spanish",
   "navbar_brand": "My Company",
   "navbar_lnk_home": "Home",
   "navbar_lnk_features": "Features",
@@ -413,7 +448,7 @@ En este template html identificamos los textos Home, Features y About, yo utiliz
 
 * Utilice el pipe translate para marcar los mensajes a traducir
 
-``` html
+```html
   <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
     <li><a routerLink="/home" [class]="style.itemActive">
       {{ "navbar_lnk_home" | translate }}
@@ -426,9 +461,10 @@ En este template html identificamos los textos Home, Features y About, yo utiliz
     </a></li>
   </ul>
 ```
+
 * Adiciones los archivos de traducciones que necesite, por ejemplo para español el archivo  ***assets/i18n/es.json***
 
-``` json
+```json
 {
   "language_english": "Ingles",
   "language_spanish": "Español",
@@ -439,3 +475,8 @@ En este template html identificamos los textos Home, Features y About, yo utiliz
   "navbar_btn_login": "Empezar ahora",
 }
 ```
+
+[Ir al inicio]
+
+
+[Ir al inicio]: <#top>

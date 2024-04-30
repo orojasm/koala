@@ -1,6 +1,9 @@
 {
   "cSpell.language": "en,es",
   "conventionalCommits.scopes": [
-    "configuration"
+    "configuration",
+    "documentation",
+    "auth",
+    "ui"
   ]
 }
